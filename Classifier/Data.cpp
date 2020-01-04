@@ -5,43 +5,21 @@
 //  Created by Léa Gand on 18/11/2019.
 //
 
-#include "Data.hpp"
+#include "Data.h"
 #include <fstream>
 #include <iostream>
 #include <string>
+#define GetCurrentDir getcwd
+#include <unistd.h>
+
 
 //using namespace classifier;
 using namespace std;
 
-class Data
-{
-
-//All public attributes/methods
-public:
-    void add();
-    void aspire_data(FILE *f);
-    Data();
-    void load();
-    //void operator[]();
-    void scale();
-    
-    string toString();
-
-    int getNbSamples();
-    ~Data();
-    
-//All privates attributes/methods
-private:
-    //std::string m_data[];
-    int m_nbFeatures;
-    int m_nbSamples;
-};
-
 Data::Data()
 {
-    //_data;
-    //return 0;
-    
+    _nbSamples=0;
+    _nbFeatures=0;
 }
 
 Data::~Data()
@@ -49,23 +27,36 @@ Data::~Data()
     
 }
 
-void Data::load()
+void Data::load(char *filename) //Open the file
 {
-    ifstream digitFile("../digitAppr.svm");  //Ouverture d'un fichier en lecture
-
+    
+    ifstream digitFile(filename);  //Ouverture d'un fichier en lecture
+    //"/Users/leagand/Desktop/Homework/digitAppr.svm"
+    
     if (digitFile)
     {
         string line; //Une variable pour stocker les lignes lues
+        int i = 0;
 
         while (getline(digitFile, line)) //Tant qu'on n'est pas ‡ la fin, on lit
         {
-            cout << line << endl;
-            //Et on l'affiche dans la console
-            //Ou alors on fait quelque chose avec cette ligne
-            //¿ vous de voir
+            if(i==0)
+            {
+                _nbSamples = stoi(line);
+                cout << "Sample number : " << _nbSamples << endl;
+            }
+            else if(i==1)
+            {
+                _nbFeatures = stoi(line);
+            }
+            else{
+                _data = line;
+                cout << "Line " << i-1 << ":" << _data << endl;
+            }
+            i++;
         }
+        
     }
-
     else
     {
         cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << endl;
@@ -73,20 +64,18 @@ void Data::load()
 }
 
 
+
 int Data::getNbSamples()
 {
-    return m_nbSamples;
+    return _nbSamples;
 }
 
-void Data::add()
-{
-    
-}
 
-void Data::aspire_data(FILE *f)
+/*void Data::add() //Add a sample
 {
     
-}
+}*/
+
 
 void Data::scale()
 {
