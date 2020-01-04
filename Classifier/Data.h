@@ -10,11 +10,17 @@
 
 #include <stdio.h>
 #include <string>
+#include <vector>
 
-//using namespace std;
+#include "FeatureVector.h"
+//#include "Sample.h"
+
+
 
 using std::string;
 using std::ifstream;
+using std::vector;
+
 
 class Data
 {
@@ -30,20 +36,21 @@ public:
     //void getDatas();
     void load(char *fileName); //recovers test file datas
     //void operator[]();
-    void scale(); //permet de ramener chacune des variables entre 0 et 1. on regarde le max, le min, on recale vers 0 et on divise pas le max
+    void scale(); //permet de ramener chacune des variables entre 0 et 1. on regarde le max, le min, on recale vers 0 et on divise par le max
     //string getFileName();
     
     //string toString();
 
     int getNbSamples();
-    
         
     //All privates attributes/methods
 private:
-    string _data;
+    vector<string> _data;
     int _nbFeatures;
     int _nbSamples;
     char *fileName;
+    
+    friend class Sample;
 };
 
 

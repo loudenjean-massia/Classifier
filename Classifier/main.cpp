@@ -9,8 +9,9 @@
 #include <iostream>
 #include "Data.h"
 #include "FeatureVector.h"
+#include "Sample.h"
 
-using namespace std;
+//using namespace std;
 
 int main(int argc, char * argv[]) {
     
@@ -24,11 +25,14 @@ int main(int argc, char * argv[]) {
 
         
     Data d;
+    Sample sp;
     
 
     d.load(argv[1]); //Recovers a data file from the user terminal
 
     d.getNbSamples();
+    sp.features(d);
+    
 
    
     return 0;

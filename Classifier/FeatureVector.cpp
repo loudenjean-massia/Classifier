@@ -5,27 +5,13 @@
 //  Created by Léa Gand on 18/11/2019.
 //
 
-#include "FeatureVector.hpp"
+#include "FeatureVector.h"
 
-class FeatureVector
-{
-public:
-    FeatureVector();
-    ~FeatureVector();
 
-    void size();
-
-    int getNorme();
-    int getVector();
-
-private:
-    int m_norme;
-    int m_vector[71];
-};
 
 FeatureVector::FeatureVector()
 {
-    
+    _norme = 0;
 }
 
 FeatureVector::~FeatureVector()
@@ -35,7 +21,7 @@ FeatureVector::~FeatureVector()
 
 int FeatureVector::getNorme()
 {
-    return 0;
+    return _norme;
 }
 
 void FeatureVector::size()

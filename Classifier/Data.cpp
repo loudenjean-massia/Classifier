@@ -9,7 +9,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#define GetCurrentDir getcwd
+
 #include <unistd.h>
 
 
@@ -50,10 +50,15 @@ void Data::load(char *filename) //Open the file
                 _nbFeatures = stoi(line);
             }
             else{
-                _data = line;
-                cout << "Line " << i-1 << ":" << _data << endl;
+                _data.push_back(line);
+               
             }
             i++;
+        }
+        
+        //Display the data
+        for(int j = 0; j < _nbSamples; j++){
+             cout << "Line " << j-1 << " : \n" << _data[j] << endl;
         }
         
     }
