@@ -24,7 +24,7 @@ using std::endl;
 
 Sample::Sample()
 {
-    _tag=0;
+    _tag = 0;
 }
 
 Sample::~Sample()
@@ -46,17 +46,22 @@ void Sample::splitLine(const string &chaine, char delimiteur, vector<string> &el
 /**
     Recover only the vector
  */
-void Sample::features(Data& data)
+void Sample::features(Data& data, int lineNb)
 {
-    int i=0;
-    
-    vector<string> features;
-    splitLine(data._data[666], ' ', features);
-    
-    
-    for(i=0; i<features.size(); i++){
-        cout << "This the feature : "<<i << " : " << features[i] << endl;
-    }
+   if (lineNb < data.getNbSamples())
+   {   
+        vector<string> features;
+        splitLine(data._data[lineNb], ' ', features);
+
+        for(int i = 0; i < features.size(); i++)
+        {
+            cout << "This the feature " << i << " of the line " << lineNb << ": " << features[i] << endl;
+        }
+   }
+   else
+   {
+        cout << "This sample doesn't exit" << endl;   
+   }
 }
 
 int Sample::tag()
