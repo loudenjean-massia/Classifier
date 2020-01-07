@@ -31,7 +31,7 @@ int main(int argc, char * argv[]) {
     d.load(argv[1]); //Recovers a data file from the user terminal
 
     //d.getNbSamples();
-    sp.features(d);
+    sp.features(d, 666); // allow to get the coordinates of the 666th samples
     
     return 0;
 }
