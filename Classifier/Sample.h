@@ -28,7 +28,7 @@ public:
     Sample();
     ~Sample();
     
-    void features(Data& data);
+    void features(Data& data, int lineNb);
     
     //operator[];
     //int scale();
