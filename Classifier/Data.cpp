@@ -18,8 +18,8 @@ using namespace std;
 
 Data::Data()
 {
-    _nbSamples=0;
-    _nbFeatures=0;
+    _nbSamples = 0;
+    _nbFeatures = 0;
 }
 
 Data::~Data()
@@ -76,15 +76,28 @@ int Data::getNbSamples()
 }
 
 
-/*void Data::add() //Add a sample
+void Data::add() //Add a sample
 {
     
-}*/
-
+}
 
 void Data::scale()
 {
+    int max = stoi(_data[0]);
+    int min = stoi(_data[0]);
+    for (int i = 0; i < getNbSamples(); i++)
+    {
+        if (stoi(_data[i]) > max)
+        {
+            max = stoi(_data[i]);
+        }
+        if (stoi(_data[i]) < min)
+        {
+            min = stoi(_data[i]);
+        }
+    }
     
+    cout << "The max is " << max << " and the min is " << min << endl;
 }
 
 string toString()

@@ -15,12 +15,9 @@
 #include "FeatureVector.h"
 //#include "Sample.h"
 
-
-
 using std::string;
 using std::ifstream;
 using std::vector;
-
 
 class Data
 {
@@ -32,13 +29,10 @@ public:
     ~Data();//Destructor
     
     //Methods definitions
-    //void add();
-    //void getDatas();
+    void add();
     void load(char *fileName); //recovers test file datas
     //void operator[]();
     void scale(); //permet de ramener chacune des variables entre 0 et 1. on regarde le max, le min, on recale vers 0 et on divise par le max
-    //string getFileName();
-    
     //string toString();
 
     int getNbSamples();

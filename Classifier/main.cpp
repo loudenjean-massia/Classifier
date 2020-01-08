@@ -23,15 +23,13 @@ int main(int argc, char * argv[]) {
     //le nom du fichier doit être passé en paramètre de argv[1]
     //Formation k-nn : voir onenote
 
-        
     Data d;
     Sample sp;
     
-
     d.load(argv[1]); //Recovers a data file from the user terminal
-
+    d.scale();
     //d.getNbSamples();
-    sp.features(d, 666); // allow to get the coordinates of the 666th samples
+    sp.features(d, 1); // allow to get the coordinates of the 666th samples
     
     return 0;
 }

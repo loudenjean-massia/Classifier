@@ -9,6 +9,7 @@
 #define FeatureVector_h
 
 #include <stdio.h>
+#include <vector>
 #include "Data.h"
 
 class FeatureVector
@@ -17,14 +18,14 @@ public:
     FeatureVector();
     ~FeatureVector();
 
-    void size();
+    int size();
 
     int getNorme();
     int getVector();
 
 private:
     int _norme;
-    int _vector[71];
+    vector<int> _vector(70);
 };
 
 #endif /* FeatureVector_hpp */

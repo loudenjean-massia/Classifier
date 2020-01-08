@@ -4,10 +4,7 @@
 //
 //  Created by Léa Gand on 18/11/2019.
 //
-
 #include "FeatureVector.h"
-
-
 
 FeatureVector::FeatureVector()
 {
@@ -24,11 +21,10 @@ int FeatureVector::getNorme()
     return _norme;
 }
 
-void FeatureVector::size()
+int FeatureVector::size()
 {
-    
+    return _vector.size();
 }
-
 
 int FeatureVector::getVector()
 {

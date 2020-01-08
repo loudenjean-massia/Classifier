@@ -43,9 +43,6 @@ void Sample::splitLine(const string &chaine, char delimiteur, vector<string> &el
     
 }
 
-/**
-    Recover only the vector
- */
 void Sample::features(Data& data, int lineNb)
 {
    if (lineNb < data.getNbSamples())
@@ -55,7 +52,15 @@ void Sample::features(Data& data, int lineNb)
 
         for(int i = 0; i < features.size(); i++)
         {
-            cout << "This the feature " << i << " of the line " << lineNb << ": " << features[i] << endl;
+            if (i == 0)
+            {
+                _tag = stoi(features[i]);
+                cout << "The tag is : " << _tag << endl;
+            }
+            else
+            {
+                cout << "This the feature " << i << " of the sample " << lineNb << ": " << features[i] << endl;
+            }
         }
    }
    else

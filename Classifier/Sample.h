@@ -35,8 +35,6 @@ public:
     int tag();
     //string toString();
     void splitLine(const string &chaine, char delimiteur, vector<string> &elements);
-    
-    
 };
 
 
