@@ -12,8 +12,6 @@
 
 #include <unistd.h>
 
-
-//using namespace classifier;
 using namespace std;
 
 Data::Data()
@@ -58,7 +56,7 @@ void Data::load(char *filename) //Open the file
         
         //Display the data
         for(int j = 0; j < _nbSamples; j++){
-             cout << "Line " << j-1 << " : \n" << _data[j] << endl;
+             //cout << "Line " << j+1 << " : \n" << _data[j] << endl;
         }
         
     }
@@ -79,25 +77,6 @@ int Data::getNbSamples()
 void Data::add() //Add a sample
 {
     
-}
-
-void Data::scale()
-{
-    int max = stoi(_data[0]);
-    int min = stoi(_data[0]);
-    for (int i = 0; i < getNbSamples(); i++)
-    {
-        if (stoi(_data[i]) > max)
-        {
-            max = stoi(_data[i]);
-        }
-        if (stoi(_data[i]) < min)
-        {
-            min = stoi(_data[i]);
-        }
-    }
-    
-    cout << "The max is " << max << " and the min is " << min << endl;
 }
 
 string toString()

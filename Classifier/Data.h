@@ -12,32 +12,25 @@
 #include <string>
 #include <vector>
 
-#include "FeatureVector.h"
-//#include "Sample.h"
-
 using std::string;
 using std::ifstream;
 using std::vector;
 
 class Data
 {
-
-    //All public attributes/methods
 public:
     
-    Data();//Constructor
-    ~Data();//Destructor
+    Data();
+    ~Data();
     
-    //Methods definitions
     void add();
     void load(char *fileName); //recovers test file datas
     //void operator[]();
-    void scale(); //permet de ramener chacune des variables entre 0 et 1. on regarde le max, le min, on recale vers 0 et on divise par le max
+    //void scale(); //permet de ramener chacune des variables entre 0 et 1. on regarde le max, le min, on recale vers 0 et on divise par le max
     //string toString();
 
     int getNbSamples();
         
-    //All privates attributes/methods
 private:
     vector<string> _data;
     int _nbFeatures;
@@ -45,7 +38,6 @@ private:
     char *fileName;
     
     friend class Sample;
+    friend class FeatureVector;
 };
-
-
-#endif /* Data_hpp */
+#endif /* Data_h */

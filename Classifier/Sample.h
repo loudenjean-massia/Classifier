@@ -8,33 +8,45 @@
 #ifndef Sample_hpp
 #define Sample_hpp
 
-#include <stdio.h>
+#include <fstream>
+#include <iostream>
 #include <string>
 #include <vector>
-
+#include <sstream>
 #include "Data.h"
+#include "FeatureVector.h"
 
 using std::string;
 using std::ifstream;
+using std::vector;
+using std::cout;
+using std::stringstream;
+using std::endl;
 
 class Sample
 {
-private:
-    
-    int _tag;
-    FeatureVector _features;
-    
 public:
     Sample();
     ~Sample();
     
-    void features(Data& data, int lineNb);
+    void tag(Data& data, int lineNb);
     
     //operator[];
     //int scale();
-    int tag();
+
     //string toString();
     void splitLine(const string &chaine, char delimiteur, vector<string> &elements);
+    
+    //getters
+    int getTag();
+    FeatureVector getFeatures();
+    
+private:
+    int _tag;
+    FeatureVector _features;
+    
+    friend class FeatureVector;
+
 };
 
 

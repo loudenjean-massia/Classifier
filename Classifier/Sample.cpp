@@ -13,8 +13,6 @@
 #include <vector>
 #include <sstream>
 
-//using namespace std;
-
 using std::string;
 using std::ifstream;
 using std::vector;
@@ -43,7 +41,7 @@ void Sample::splitLine(const string &chaine, char delimiteur, vector<string> &el
     
 }
 
-void Sample::features(Data& data, int lineNb)
+void Sample::tag(Data& data, int lineNb)
 {
    if (lineNb < data.getNbSamples())
    {   
@@ -57,10 +55,10 @@ void Sample::features(Data& data, int lineNb)
                 _tag = stoi(features[i]);
                 cout << "The tag is : " << _tag << endl;
             }
-            else
+            /*else
             {
                 cout << "This the feature " << i << " of the sample " << lineNb << ": " << features[i] << endl;
-            }
+            }*/
         }
    }
    else
@@ -69,7 +67,12 @@ void Sample::features(Data& data, int lineNb)
    }
 }
 
-int Sample::tag()
+int Sample::getTag()
 {
     return _tag;
+}
+
+FeatureVector Sample::getFeatures()
+{
+    return _features;
 }

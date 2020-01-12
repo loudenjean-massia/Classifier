@@ -25,11 +25,14 @@ int main(int argc, char * argv[]) {
 
     Data d;
     Sample sp;
+    FeatureVector fv;
     
     d.load(argv[1]); //Recovers a data file from the user terminal
-    d.scale();
     //d.getNbSamples();
-    sp.features(d, 1); // allow to get the coordinates of the 666th samples
+    sp.tag(d, 1); // allow to get the coordinates of the 666th samples
     
+    fv.vector(d, 332);
+    fv.scale();
+    fv.norme();
     return 0;
 }

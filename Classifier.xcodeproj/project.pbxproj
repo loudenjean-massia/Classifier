@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18BDE67823CB7A9F00EE09C0 /* Sample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18BDE67523CB7A9F00EE09C0 /* Sample.cpp */; };
+		18BDE68023CB995600EE09C0 /* KnnCosine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18BDE67E23CB995600EE09C0 /* KnnCosine.cpp */; };
 		520124B92381D3C5004CC2AE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520124B82381D3C5004CC2AE /* main.cpp */; };
 		5279849323830DCA00FB3CB1 /* FeatureVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5279849123830DCA00FB3CB1 /* FeatureVector.cpp */; };
 		5279849623830E5000FB3CB1 /* Data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5279849423830E5000FB3CB1 /* Data.cpp */; };
@@ -25,12 +27,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		18BDE67523CB7A9F00EE09C0 /* Sample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sample.cpp; sourceTree = "<group>"; };
+		18BDE67623CB7A9F00EE09C0 /* FeatureVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeatureVector.h; sourceTree = "<group>"; };
+		18BDE67723CB7A9F00EE09C0 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
+		18BDE67923CB7B1E00EE09C0 /* Sample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sample.h; sourceTree = "<group>"; };
+		18BDE67D23CB987E00EE09C0 /* Knn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Knn.h; sourceTree = "<group>"; };
+		18BDE67E23CB995600EE09C0 /* KnnCosine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KnnCosine.cpp; sourceTree = "<group>"; };
+		18BDE68123CB997600EE09C0 /* KnnCosine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnnCosine.h; sourceTree = "<group>"; };
 		520124B52381D3C5004CC2AE /* Classifier */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Classifier; sourceTree = BUILT_PRODUCTS_DIR; };
 		520124B82381D3C5004CC2AE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5279849123830DCA00FB3CB1 /* FeatureVector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FeatureVector.cpp; sourceTree = "<group>"; };
-		5279849223830DCA00FB3CB1 /* FeatureVector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FeatureVector.hpp; sourceTree = "<group>"; };
 		5279849423830E5000FB3CB1 /* Data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Data.cpp; sourceTree = "<group>"; };
-		5279849523830E5000FB3CB1 /* Data.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Data.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +71,15 @@
 			isa = PBXGroup;
 			children = (
 				520124B82381D3C5004CC2AE /* main.cpp */,
+				18BDE67523CB7A9F00EE09C0 /* Sample.cpp */,
 				5279849123830DCA00FB3CB1 /* FeatureVector.cpp */,
 				5279849423830E5000FB3CB1 /* Data.cpp */,
-				5279849523830E5000FB3CB1 /* Data.hpp */,
-				5279849223830DCA00FB3CB1 /* FeatureVector.hpp */,
+				18BDE67623CB7A9F00EE09C0 /* FeatureVector.h */,
+				18BDE67923CB7B1E00EE09C0 /* Sample.h */,
+				18BDE67723CB7A9F00EE09C0 /* Data.h */,
+				18BDE67D23CB987E00EE09C0 /* Knn.h */,
+				18BDE67E23CB995600EE09C0 /* KnnCosine.cpp */,
+				18BDE68123CB997600EE09C0 /* KnnCosine.h */,
 			);
 			path = Classifier;
 			sourceTree = "<group>";
@@ -129,7 +141,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5279849623830E5000FB3CB1 /* Data.cpp in Sources */,
+				18BDE67823CB7A9F00EE09C0 /* Sample.cpp in Sources */,
 				520124B92381D3C5004CC2AE /* main.cpp in Sources */,
+				18BDE68023CB995600EE09C0 /* KnnCosine.cpp in Sources */,
 				5279849323830DCA00FB3CB1 /* FeatureVector.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

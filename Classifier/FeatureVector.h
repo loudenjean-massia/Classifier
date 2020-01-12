@@ -8,9 +8,18 @@
 #ifndef FeatureVector_h
 #define FeatureVector_h
 
-#include <stdio.h>
-#include <vector>
 #include "Data.h"
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <math.h>
+
+//using std::vector;
+//using std::string;
+//using std::ifstream;
+using namespace std;
 
 class FeatureVector
 {
@@ -18,14 +27,19 @@ public:
     FeatureVector();
     ~FeatureVector();
 
-    int size();
+    void vector(Data& data, int lineNb);
+    void splitLine(const string &chaine, char delimiteur, std::vector<string> &elements);
+    
+    int getSize();
+    void scale();
+    void norme();
 
-    int getNorme();
-    int getVector();
+    float getNorme();
+    std::vector<double> getVector();
 
 private:
-    int _norme;
-    vector<int> _vector(70);
+    float _norme;
+    std::vector<double> _vector;
 };
 
 #endif /* FeatureVector_hpp */
