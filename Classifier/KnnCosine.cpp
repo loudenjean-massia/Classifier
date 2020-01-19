@@ -27,8 +27,10 @@ long double KnnCosine::knnCosine(FeatureVector featureA, FeatureVector featureB)
     for (int i = 0; i < vectorB.size(); i++)
     {
         scalarProduct += vectorA[i] * vectorB[i];
+        //norme += (vectorB[i] - vectorA[i])*(vectorB[i] - vectorA[i]);
     }
     return _cosine = scalarProduct / (featureA.norme() * featureB.norme()); //scalarProduct(featureA, featureB)
+   // return _cosine = sqrt(scalarProduct);
 }
 
 void KnnCosine::similarity(int k, string apprFile, string testFile)
