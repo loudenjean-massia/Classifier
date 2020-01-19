@@ -12,7 +12,7 @@ using std::cout;
 using std::stringstream;
 using std::endl;
 
-FeatureVector::FeatureVector(): _norme(0), _vector()
+FeatureVector::FeatureVector(): _norme(0), _vector(), _scalar(0)
 {
     
 }
@@ -41,7 +41,7 @@ void FeatureVector::vector(Data& data, int lineNb)
         for(int i = 1; i < features.size(); i++)
         {
             _vector.push_back(stof(features[i].c_str()));
-            cout << "This the feature " << i << " of the sample " << lineNb << ": " << _vector[i-1] << endl;
+            //cout << "This the feature " << i << " of the sample " << lineNb << ": " << _vector[i-1] << endl;
         }
    }
    else
@@ -61,7 +61,7 @@ int FeatureVector::getSize()
     return 70;
 }
 
-vector<double> FeatureVector::getVector()
+vector<float> FeatureVector::getVector() const 
 {
     return _vector;
 }
@@ -89,15 +89,32 @@ void FeatureVector::scale()
             _vector[i] = ;
         }
     }*/
-    cout << "The max is " << max << " and the min is " << min << endl;
+    //cout << "The max is " << max << " and the min is " << min << endl;
 }
 
-void FeatureVector::norme()
+float FeatureVector::norme()
 {
-    for (int i = 0; i < getSize(); i++)
+    float norme = 0;
+    for (int i = 0; i < _vector.size(); i++)
     {
-        _norme += _vector[i] * _vector[i];
+        norme += _vector[i] * _vector[i];
     }
-    _norme = sqrt(_norme);
-    cout << "La norme est : " << _norme << endl;
+    norme = sqrt(norme);
+    return norme;
+    //cout << "La norme est : " << _norme << endl;
 }
+
+/*long double FeatureVector::scalarProduct(FeatureVector featureA)
+{
+    long double scalar = 0;
+    std::vector<float> vectorA(70);
+    vectorA = featureA.getVector();
+    
+    for (int i = 0; i < _vector.size(); i++)
+    {
+        cout << vectorA[i] << endl;
+        //scalar += _vector[i] * vectorA[i];
+    }
+    return scalar;
+    //cout << "Le produit scalaire est : " << _scalar << endl;
+}*/

@@ -32,14 +32,16 @@ public:
     
     int getSize();
     void scale();
-    void norme();
+    float norme();
+    long double scalarProduct(FeatureVector featureA);
 
     float getNorme();
-    std::vector<double> getVector();
+    std::vector<float> getVector() const;
 
 private:
     float _norme;
-    std::vector<double> _vector;
+    long double _scalar;
+    std::vector<float> _vector;
 };
 
 #endif /* FeatureVector_hpp */

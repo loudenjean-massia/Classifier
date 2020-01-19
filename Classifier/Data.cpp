@@ -25,7 +25,7 @@ Data::~Data()
     
 }
 
-void Data::load(char *filename) //Open the file
+void Data::load(string filename) //Open the file
 {
     
     ifstream digitFile(filename);  //Ouverture d'un fichier en lecture
@@ -41,7 +41,7 @@ void Data::load(char *filename) //Open the file
             if(i==0)
             {
                 _nbSamples = stoi(line);
-                cout << "Sample number : " << _nbSamples << endl;
+               // cout << "Sample number : " << _nbSamples << endl;
             }
             else if(i==1)
             {

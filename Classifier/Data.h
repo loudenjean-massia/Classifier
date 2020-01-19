@@ -24,7 +24,7 @@ public:
     ~Data();
     
     void add();
-    void load(char *fileName); //recovers test file datas
+    void load(string filename); //recovers test file datas
     //void operator[]();
     //void scale(); //permet de ramener chacune des variables entre 0 et 1. on regarde le max, le min, on recale vers 0 et on divise par le max
     //string toString();

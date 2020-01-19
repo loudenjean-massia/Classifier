@@ -22,13 +22,14 @@ using std::endl;
 
 Sample::Sample()
 {
-    _tag = 0;
+
 }
 
 Sample::~Sample()
 {
     
 }
+
 
 void Sample::splitLine(const string &chaine, char delimiteur, vector<string> &elements){
     
@@ -39,6 +40,11 @@ void Sample::splitLine(const string &chaine, char delimiteur, vector<string> &el
         elements.push_back(sousChaine);
     }
     
+}
+
+void Sample::setFeatureVector(Data data, int lineNb)
+{
+    _features.vector(data, lineNb);
 }
 
 void Sample::tag(Data& data, int lineNb)
@@ -53,7 +59,7 @@ void Sample::tag(Data& data, int lineNb)
             if (i == 0)
             {
                 _tag = stoi(features[i]);
-                cout << "The tag is : " << _tag << endl;
+                //cout << "The tag is : " << _tag << endl;
             }
             /*else
             {
@@ -65,6 +71,11 @@ void Sample::tag(Data& data, int lineNb)
    {
         cout << "This sample doesn't exit" << endl;   
    }
+}
+
+void Sample::setTag(int tag)
+{
+    _tag = tag;
 }
 
 int Sample::getTag()

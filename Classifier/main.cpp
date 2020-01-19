@@ -10,6 +10,8 @@
 #include "Data.h"
 #include "FeatureVector.h"
 #include "Sample.h"
+#include "Knn.h"
+#include "KnnCosine.h"
 
 //using namespace std;
 
@@ -23,16 +25,9 @@ int main(int argc, char * argv[]) {
     //le nom du fichier doit être passé en paramètre de argv[1]
     //Formation k-nn : voir onenote
 
-    Data d;
-    Sample sp;
-    FeatureVector fv;
+    KnnCosine knnCosine;
     
-    d.load(argv[1]); //Recovers a data file from the user terminal
-    //d.getNbSamples();
-    sp.tag(d, 1); // allow to get the coordinates of the 666th samples
-    
-    fv.vector(d, 332);
-    fv.scale();
-    fv.norme();
+    knnCosine.similarity(stoi(argv[3]), argv[1], argv[2]);
+
     return 0;
 }

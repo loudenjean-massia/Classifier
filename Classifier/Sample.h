@@ -36,6 +36,9 @@ public:
 
     //string toString();
     void splitLine(const string &chaine, char delimiteur, vector<string> &elements);
+    void setFeatureVector(Data data, int lineNb);
+    
+    void setTag(int tag);
     
     //getters
     int getTag();
@@ -46,8 +49,5 @@ private:
     FeatureVector _features;
     
     friend class FeatureVector;
-
 };
-
-
 #endif /* Sample_hpp */
