@@ -9,6 +9,8 @@
 #define ClassificationReport_h
 
 #include <stdio.h>
+#include <vector>
+#include <math.h>
 
 using namespace std;
 
@@ -17,19 +19,13 @@ class ClassificationReport{
 public:
     
     ClassificationReport();
-    int computePercentage();
-    
+    float computePercentage(vector<int> realTag, vector<int> resultTag);
     
 private:
-    
     int _confusion;
     int _nbTags;
     int _nok;
     int _ok;
-    
-    
-  
-    
 };
 
 

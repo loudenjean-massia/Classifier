@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		185FA0F423D4F23500B08113 /* ClassificationReport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185FA0F223D4F23500B08113 /* ClassificationReport.cpp */; };
 		18BDE67823CB7A9F00EE09C0 /* Sample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18BDE67523CB7A9F00EE09C0 /* Sample.cpp */; };
 		18BDE68023CB995600EE09C0 /* KnnCosine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18BDE67E23CB995600EE09C0 /* KnnCosine.cpp */; };
 		520124B92381D3C5004CC2AE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520124B82381D3C5004CC2AE /* main.cpp */; };
@@ -27,6 +28,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		185FA0F223D4F23500B08113 /* ClassificationReport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassificationReport.cpp; sourceTree = "<group>"; };
+		185FA0F323D4F23500B08113 /* ClassificationReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationReport.h; sourceTree = "<group>"; };
 		18BDE67523CB7A9F00EE09C0 /* Sample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sample.cpp; sourceTree = "<group>"; };
 		18BDE67623CB7A9F00EE09C0 /* FeatureVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeatureVector.h; sourceTree = "<group>"; };
 		18BDE67723CB7A9F00EE09C0 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
@@ -71,6 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				520124B82381D3C5004CC2AE /* main.cpp */,
+				185FA0F323D4F23500B08113 /* ClassificationReport.h */,
+				185FA0F223D4F23500B08113 /* ClassificationReport.cpp */,
 				18BDE67523CB7A9F00EE09C0 /* Sample.cpp */,
 				5279849123830DCA00FB3CB1 /* FeatureVector.cpp */,
 				5279849423830E5000FB3CB1 /* Data.cpp */,
@@ -78,8 +83,8 @@
 				18BDE67923CB7B1E00EE09C0 /* Sample.h */,
 				18BDE67723CB7A9F00EE09C0 /* Data.h */,
 				18BDE67D23CB987E00EE09C0 /* Knn.h */,
-				18BDE67E23CB995600EE09C0 /* KnnCosine.cpp */,
 				18BDE68123CB997600EE09C0 /* KnnCosine.h */,
+				18BDE67E23CB995600EE09C0 /* KnnCosine.cpp */,
 			);
 			path = Classifier;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 				520124B92381D3C5004CC2AE /* main.cpp in Sources */,
 				18BDE68023CB995600EE09C0 /* KnnCosine.cpp in Sources */,
 				5279849323830DCA00FB3CB1 /* FeatureVector.cpp in Sources */,
+				185FA0F423D4F23500B08113 /* ClassificationReport.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,9 +15,9 @@ KnnCosine::KnnCosine(): _cosine(0)
     
 }
 
-long double KnnCosine::knnCosine(FeatureVector featureA, FeatureVector featureB)
+long double KnnCosine::getCosine(FeatureVector featureA, FeatureVector featureB)
 {
-    long double scalarProduct = 0;
+    float scalarProduct = 0;
     std::vector<float> vectorA(70);
     vectorA = featureA.getVector();
     
@@ -33,14 +33,15 @@ long double KnnCosine::knnCosine(FeatureVector featureA, FeatureVector featureB)
    // return _cosine = sqrt(scalarProduct);
 }
 
-void KnnCosine::similarity(int k, string apprFile, string testFile)
+vector<int> KnnCosine::similarity(int k, string apprFile, string testFile)
 {
     int apprSize, testSize;
-    vector<float> cosine;
+    vector<long double> cosine;
     
     vector<float> max(k,0);
     vector<int> indiceMax(k,0);
     vector<int> tag;
+    vector<int> resultTag;
     
     /* Chargement des fichiers*/
     _appr.load(apprFile);
@@ -72,7 +73,7 @@ void KnnCosine::similarity(int k, string apprFile, string testFile)
     {
        for(int i = 0; i < apprSize; i++)
        {
-           cosine.push_back(knnCosine(sampleTest[j]->getFeatures(), sampleAppr[i]->getFeatures()));
+           cosine.push_back(getCosine(sampleTest[j]->getFeatures(), sampleAppr[i]->getFeatures()));
        }
 
         indiceMax = getMaxs(max, cosine);
@@ -82,13 +83,14 @@ void KnnCosine::similarity(int k, string apprFile, string testFile)
             //cout << "tag du " << i << "eme point est : " << tag[i] << endl;
         }
 
-        getTag(tag);
+        resultTag.push_back(getTag(tag));
         cosine.clear();
         tag.clear();
     }
+    return resultTag;
 }
 
-vector<int> KnnCosine::getMaxs(vector<float> max, vector<float> cosine)
+vector<int> KnnCosine::getMaxs(vector<float> max, vector<long double> cosine)
 {
     vector<int> indexCosine(max.size(), 0);
     
@@ -137,6 +139,6 @@ int KnnCosine::getTag(vector<int> tag)
             }
         }
     }
-    cout << "Le tag est : " << tagMax << endl;
+    //cout << "Le tag est : " << tagMax << endl;
     return tagMax;
 }

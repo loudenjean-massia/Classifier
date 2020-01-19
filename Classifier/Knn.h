@@ -13,13 +13,11 @@
 class Knn {
 public:
     Knn();
-    
-    virtual void predict() = 0;
-    
+        
 protected:
     virtual float getKnn() = 0;
-    virtual void predictSingle() = 0;
-    virtual void knnCosine() = 0;
+    virtual void similarity() = 0;
+    virtual long double knnCosine() = 0;
 };
 
 #endif /* Knn_h */

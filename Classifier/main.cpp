@@ -12,6 +12,7 @@
 #include "Sample.h"
 #include "Knn.h"
 #include "KnnCosine.h"
+#include "ClassificationReport.h"
 
 //using namespace std;
 
@@ -26,8 +27,38 @@ int main(int argc, char * argv[]) {
     //Formation k-nn : voir onenote
 
     KnnCosine knnCosine;
+    Data test;
+    vector<int> resultTag;
+    vector<int> realTag;
+    int testSize;
+    ClassificationReport cr;
     
-    knnCosine.similarity(stoi(argv[3]), argv[1], argv[2]);
+    resultTag = knnCosine.similarity(stoi(argv[3]), argv[1], argv[2]);
+    
+    test.load(argv[2]);
+    
+    testSize = test.getNbSamples();
+    
+    Sample *sampleVerif[testSize];
+    for(int i = 0; i < testSize; i++)
+    {
+        sampleVerif[i] = new Sample();
+        sampleVerif[i]->setFeatureVector(test, i);
+        
+        sampleVerif[i]->tag(test, i);
+    }
+    for (int i = 0; i < testSize; i++)
+    {
+        realTag.push_back(sampleVerif[i]->getTag());
+    }
+    
+    for(int i = 0; i < resultTag.size(); i++)
+    {
+        cout << "Le chiffre n°" << i << " est : " << resultTag[i] << endl;
+        cout << "Le vrai tag de " << i << " est : " << sampleVerif[i]->getTag() << endl;
+    }
 
+    cout << "le pourcentage de bonnes réponses est :" << cr.computePercentage(realTag, resultTag) << endl;
+    
     return 0;
 }
