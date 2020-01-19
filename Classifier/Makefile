@@ -1,5 +1,5 @@
-classifier: main.o Data.o Sample.o FeatureVector.o Knn.o KnnCosine.o
-	gcc -o prog main.o Data.o Sample.o FeatureVector.o Knn.o KnnCosine.o
+classifier: main.o Data.o Sample.o FeatureVector.o KnnCosine.o
+	gcc -o classifier main.o Data.o Sample.o FeatureVector.o KnnCosine.o
 
 main.o : main.cpp
 	gcc -c -Wall main.cpp
@@ -12,9 +12,6 @@ Sample.o : Sample.cpp
 
 FeatureVector.o : FeatureVector.cpp
 	gcc -c -Wall FeatureVector.cpp
-
-Knn.o : Knn.cpp
-	gcc -c -Wall Knn.cpp
 
 KnnCosine.o : KnnCosine.cpp
 	gcc -c -Wall KnnCosine.cpp
