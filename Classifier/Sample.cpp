@@ -63,7 +63,7 @@ void Sample::tag(Data& data, int lineNb)
         vector<string> features;
         splitLine(data._data[lineNb], ' ', features);
 
-        for(int i = 0; i < features.size(); i++)
+        for(int i = 0; i < (signed)features.size(); i++)
         {
             if (i == 0)
             {

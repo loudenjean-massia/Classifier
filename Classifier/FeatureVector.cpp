@@ -53,7 +53,7 @@ void FeatureVector::vector(Data& data, int lineNb)
    {
         std::vector<string> features;
         splitLine(data._data[lineNb], ' ', features);
-        for(int i = 1; i < features.size(); i++)
+        for(int i = 1; i < (signed)features.size(); i++)
         {
             _vector.push_back(stof(features[i].c_str()));
             
@@ -119,7 +119,7 @@ void FeatureVector::scale()
 float FeatureVector::norme()
 {
     float norme = 0;
-    for (int i = 0; i < _vector.size(); i++)
+    for (int i = 0; i < (signed)_vector.size(); i++)
     {
         norme += _vector[i] * _vector[i];
     }

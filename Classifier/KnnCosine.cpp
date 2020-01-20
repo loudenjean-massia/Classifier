@@ -31,7 +31,7 @@ void KnnCosine::cosine(FeatureVector featureA, FeatureVector featureB)
     std::vector<float> vectorB(70);
     vectorB = featureB.getVector();
 
-    for (int i = 0; i < vectorB.size(); i++)
+    for (int i = 0; i < (signed)vectorB.size(); i++)
     {
         scalarProduct += vectorA[i] * vectorB[i];
     }
@@ -107,24 +107,23 @@ vector<int> KnnCosine::similarity(int k, string apprFile, string testFile)
 
 vector<int> KnnCosine::getMaxs(vector<float> /*max*/ min, vector<long double> /*cosine*/ norme)
 {
-    //vector<int> indexCosine(max.size(), 0);
-    vector<int> indexNorme(min.size(), 0);
-    
-    //getnormeMin
-    
-    for(int i =0 ; i<min.size(); i++){
-        for(int j=0; j < norme.size(); j++){
-            if(norme[j] < min[i]){
-                min[i] = norme[j];
-                indexNorme[i]=j;
-                norme.erase(norme.begin()+j);
+    vector<int> indexCosine(max.size(), 0);
+
+    for (int i = 0; i < (signed)max.size(); i++)
+    {
+        for (int j = 0; j < (signed)cosine.size(); j++)
+        {
+            if (cosine[j] > max[i])
+            {
+                max[i] = cosine[j];
+                indexCosine[i] = j;
+                cosine.erase(cosine.begin()+j);
             }
             
         }
         
     }
-    //return indexCosine;
-    return indexNorme;
+    return indeCosine;
 }
 
 int KnnCosine::getTag(vector<int> tag)
@@ -134,7 +133,7 @@ int KnnCosine::getTag(vector<int> tag)
     int tagMax = 0;
     
     //cout << "size de tag " << tag.size() << endl;
-    for (int j = 0; j < tag.size(); j++)
+    for (int j = 0; j < (signed)tag.size(); j++)
     {
         for (int i = 0; i < 10; i++)
         {
