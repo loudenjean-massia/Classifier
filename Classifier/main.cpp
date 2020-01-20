@@ -47,7 +47,7 @@ int main(int argc, char * argv[]) {
         realTag.push_back(sampleVerif[i]->getTag());
     }
     
-    for(int i = 0; i < resultTag.size(); i++)
+    for(int i = 0; i < (signed)resultTag.size(); i++)
     {
         cout << "Le chiffre n°" << i << " est : " << resultTag[i] << endl;
         cout << "   (Le vrai tag est : " << sampleVerif[i]->getTag() << ")" << endl << endl;

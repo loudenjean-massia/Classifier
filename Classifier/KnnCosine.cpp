@@ -21,7 +21,7 @@ void KnnCosine::cosine(FeatureVector featureA, FeatureVector featureB)
     std::vector<float> vectorB(70);
     vectorB = featureB.getVector();
 
-    for (int i = 0; i < vectorB.size(); i++)
+    for (int i = 0; i < (signed)vectorB.size(); i++)
     {
         scalarProduct += vectorA[i] * vectorB[i];
     }
@@ -94,9 +94,9 @@ vector<float> KnnCosine::getMaxs(vector<float> max, vector<long double> cosine)
 {
     vector<int> indexCosine(max.size(), 0);
 
-    for (int i = 0; i < max.size(); i++)
+    for (int i = 0; i < (signed)max.size(); i++)
     {
-        for (int j = 0; j < cosine.size(); j++)
+        for (int j = 0; j < (signed)cosine.size(); j++)
         {
             if (cosine[j] > max[i])
             {
@@ -116,7 +116,7 @@ int KnnCosine::getTag(vector<int> tag)
     int tagMax = 0;
     
     //cout << "size de tag " << tag.size() << endl;
-    for (int j = 0; j < tag.size(); j++)
+    for (int j = 0; j < (signed)tag.size(); j++)
     {
         for (int i = 0; i < 10; i++)
         {
