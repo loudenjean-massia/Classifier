@@ -11,24 +11,21 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <unistd.h>
 
-using std::string;
-using std::ifstream;
-using std::vector;
+using namespace std;
 
 class Data
 {
 public:
     
     Data();
-    ~Data();
     
     void add();
     void load(string filename); //recovers test file datas
-    //void operator[]();
-    //void scale(); //permet de ramener chacune des variables entre 0 et 1. on regarde le max, le min, on recale vers 0 et on divise par le max
-    //string toString();
-
     int getNbSamples();
         
 private:

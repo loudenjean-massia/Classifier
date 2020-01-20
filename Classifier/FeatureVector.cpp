@@ -12,7 +12,7 @@ using std::cout;
 using std::stringstream;
 using std::endl;
 
-FeatureVector::FeatureVector(): _norme(0), _vector(), _scalar(0)
+FeatureVector::FeatureVector(): _norme(0), _vector()
 {
     
 }
@@ -81,15 +81,6 @@ void FeatureVector::scale()
             min = _vector[i];
         }
     }
-   
-    /*for (int i = 0; i < 70; i++)
-    {
-        if (_vector[i] > 1)
-        {
-            _vector[i] = ;
-        }
-    }*/
-    //cout << "The max is " << max << " and the min is " << min << endl;
 }
 
 float FeatureVector::norme()
@@ -101,20 +92,4 @@ float FeatureVector::norme()
     }
     norme = sqrt(norme);
     return norme;
-    //cout << "La norme est : " << _norme << endl;
 }
-
-/*long double FeatureVector::scalarProduct(FeatureVector featureA)
-{
-    long double scalar = 0;
-    std::vector<float> vectorA(70);
-    vectorA = featureA.getVector();
-    
-    for (int i = 0; i < _vector.size(); i++)
-    {
-        cout << vectorA[i] << endl;
-        //scalar += _vector[i] * vectorA[i];
-    }
-    return scalar;
-    //cout << "Le produit scalaire est : " << _scalar << endl;
-}*/

@@ -9,11 +9,13 @@
 #define ClassificationReport_h
 
 #include <stdio.h>
+#include <fstream>
+#include <iostream>
 #include <vector>
 #include <math.h>
+#include <string>
 
 using namespace std;
-using std::vector;
 
 class ClassificationReport{
     
@@ -31,6 +33,5 @@ private:
     int _nok;
     int _ok;
 };
-
 
 #endif /* ClassificationReport_h */

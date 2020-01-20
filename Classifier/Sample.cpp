@@ -7,29 +7,10 @@
 
 #include "Sample.h"
 
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <vector>
-#include <sstream>
-
-using std::string;
-using std::ifstream;
-using std::vector;
-using std::cout;
-using std::stringstream;
-using std::endl;
-
 Sample::Sample()
 {
 
 }
-
-Sample::~Sample()
-{
-    
-}
-
 
 void Sample::splitLine(const string &chaine, char delimiteur, vector<string> &elements){
     
@@ -39,7 +20,6 @@ void Sample::splitLine(const string &chaine, char delimiteur, vector<string> &el
     while(getline(ss,sousChaine, delimiteur)){
         elements.push_back(sousChaine);
     }
-    
 }
 
 void Sample::setFeatureVector(Data data, int lineNb)
@@ -61,10 +41,6 @@ void Sample::tag(Data& data, int lineNb)
                 _tag = stoi(features[i]);
                 //cout << "The tag is : " << _tag << endl;
             }
-            /*else
-            {
-                cout << "This the feature " << i << " of the sample " << lineNb << ": " << features[i] << endl;
-            }*/
         }
    }
    else

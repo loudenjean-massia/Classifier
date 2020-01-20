@@ -27,17 +27,10 @@ class Sample
 {
 public:
     Sample();
-    ~Sample();
     
     void tag(Data& data, int lineNb);
-    
-    //operator[];
-    //int scale();
-
-    //string toString();
     void splitLine(const string &chaine, char delimiteur, vector<string> &elements);
     void setFeatureVector(Data data, int lineNb);
-    
     void setTag(int tag);
     
     //getters

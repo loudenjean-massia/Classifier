@@ -12,9 +12,8 @@
 #include "Sample.h"
 #include "Knn.h"
 #include "KnnCosine.h"
+#include "KnnNorme.h"
 #include "ClassificationReport.h"
-
-//using namespace std;
 
 int main(int argc, char * argv[]) {
     
@@ -22,11 +21,8 @@ int main(int argc, char * argv[]) {
     //Argv[1] : fichier d'apprentissage
     //Argv[2] : fichier de test
     //Argv[3] : k nmbre de voisin que l'on fait voter pour la prédiction d'étiquettes
-    
-    //le nom du fichier doit être passé en paramètre de argv[1]
-    //Formation k-nn : voir onenote
 
-    KnnCosine knnCosine;
+    KnnNorme knnNorme;
     Data test;
     vector<int> resultTag;
     vector<int> realTag;
@@ -34,7 +30,7 @@ int main(int argc, char * argv[]) {
     ClassificationReport cr;
     vector<vector<int> > matrix;
     
-    resultTag = knnCosine.similarity(stoi(argv[3]), argv[1], argv[2]);
+    resultTag = knnNorme.similarity(stoi(argv[3]), argv[1], argv[2]);
     
     test.load(argv[2]);
     
@@ -47,26 +43,23 @@ int main(int argc, char * argv[]) {
         sampleVerif[i]->setFeatureVector(test, i);
         
         sampleVerif[i]->tag(test, i);
-    }
-    for (int i = 0; i < testSize; i++)
-    {
+        
         realTag.push_back(sampleVerif[i]->getTag());
     }
     
     for(int i = 0; i < resultTag.size(); i++)
     {
         cout << "Le chiffre n°" << i << " est : " << resultTag[i] << endl;
-        cout << "Le vrai tag de " << i << " est : " << sampleVerif[i]->getTag() << endl;
+        cout << "   (Le vrai tag est : " << sampleVerif[i]->getTag() << ")" << endl << endl;
     }
 
-    cout << "le pourcentage de bonnes réponses est :" << cr.computePercentage(realTag, resultTag) << " %" << endl;
+    cout << "Le pourcentage de bonnes réponses est : " << cr.computePercentage(realTag, resultTag) << " %" << endl;
     
-    cout << "Here is the confusion matrix : " << endl << endl << endl;
+    cout << endl << "Voici la matrice de confusion : " << endl << endl << endl;
     
     
     matrix = cr.confusionMatrix(realTag, resultTag);
     cr.displayMatrix(matrix);
-    
     
     return 0;
 }

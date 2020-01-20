@@ -7,15 +7,12 @@
 
 #include "KnnCosine.h"
 
-using namespace std;
-
-
 KnnCosine::KnnCosine(): _cosine(0)
 {
     
 }
 
-long double KnnCosine::getCosine(FeatureVector featureA, FeatureVector featureB)
+void KnnCosine::cosine(FeatureVector featureA, FeatureVector featureB)
 {
     float scalarProduct = 0;
     std::vector<float> vectorA(70);
@@ -27,19 +24,16 @@ long double KnnCosine::getCosine(FeatureVector featureA, FeatureVector featureB)
     for (int i = 0; i < vectorB.size(); i++)
     {
         scalarProduct += vectorA[i] * vectorB[i];
-        //norme += (vectorB[i] - vectorA[i])*(vectorB[i] - vectorA[i]);
     }
-    return _cosine = scalarProduct / (featureA.norme() * featureB.norme()); //scalarProduct(featureA, featureB)
-   // return _cosine = sqrt(scalarProduct);
+    _cosine = scalarProduct / (featureA.norme() * featureB.norme());
 }
 
 vector<int> KnnCosine::similarity(int k, string apprFile, string testFile)
 {
     int apprSize, testSize;
-    vector<long double> cosine;
+    vector<long double> cosineTab;
     
-    vector<float> max(k,0);
-    vector<int> indiceMax(k,0);
+    vector<float> max(k, 0);
     vector<int> tag;
     vector<int> resultTag;
     
@@ -59,7 +53,6 @@ vector<int> KnnCosine::similarity(int k, string apprFile, string testFile)
         sampleAppr[i]->setFeatureVector(_appr, i);
         
         sampleAppr[i]->tag(_appr, i);
-        //cout << "Tag du " << i << "eme sample appr : " << sampleAppr[i]->getTag() << endl;
     }
     
     Sample *sampleTest[testSize];
@@ -73,27 +66,34 @@ vector<int> KnnCosine::similarity(int k, string apprFile, string testFile)
     {
        for(int i = 0; i < apprSize; i++)
        {
-           cosine.push_back(getCosine(sampleTest[j]->getFeatures(), sampleAppr[i]->getFeatures()));
+           cosine(sampleTest[j]->getFeatures(), sampleAppr[i]->getFeatures());
+           cosineTab.push_back(_cosine);
        }
 
-        indiceMax = getMaxs(max, cosine);
-        for (int i = 0; i < k; i++)
+        max = getMaxs(max, cosineTab);
+        
+        for (int n = 0; n < k; n++)
         {
-            tag.push_back(sampleAppr[indiceMax[i]]->getTag());
-            //cout << "tag du " << i << "eme point est : " << tag[i] << endl;
+            for (int i = 0; i < apprSize; i++)
+            {
+                if (max[n] == cosineTab[i])
+                {
+                    tag.push_back(sampleAppr[i]->getTag());
+                }
+            }
         }
 
         resultTag.push_back(getTag(tag));
-        cosine.clear();
+        cosineTab.clear();
         tag.clear();
     }
     return resultTag;
 }
 
-vector<int> KnnCosine::getMaxs(vector<float> max, vector<long double> cosine)
+vector<float> KnnCosine::getMaxs(vector<float> max, vector<long double> cosine)
 {
     vector<int> indexCosine(max.size(), 0);
-    
+
     for (int i = 0; i < max.size(); i++)
     {
         for (int j = 0; j < cosine.size(); j++)
@@ -106,12 +106,7 @@ vector<int> KnnCosine::getMaxs(vector<float> max, vector<long double> cosine)
             }
         }
     }
-    return indexCosine;
-}
-    
-float KnnCosine::getKnn()
-{
-    return _cosine;
+    return max;
 }
 
 int KnnCosine::getTag(vector<int> tag)
@@ -139,6 +134,5 @@ int KnnCosine::getTag(vector<int> tag)
             }
         }
     }
-    //cout << "Le tag est : " << tagMax << endl;
     return tagMax;
 }
