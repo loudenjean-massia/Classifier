@@ -10,6 +10,8 @@
 #include <iostream>
 #include <string>
 
+using std::vector;
+
 ClassificationReport::ClassificationReport(): _confusion(0), _nbTags(0), _nok(0), _ok(0)
 {
 
@@ -46,11 +48,38 @@ float ClassificationReport::computePercentage(vector<int> realTag, vector<int> r
     return -1;
 }
 
-vector<int> ClassificationReport::confusionMatrix(vector<int> realTag, vector<int> resultTag){
+vector<vector <int> > ClassificationReport::confusionMatrix(vector<int> realTag, vector<int> resultTag){
     
-    vector<int> _matrix;
+    vector<vector <int> > matrix(10 , vector<int> (10, 0));
     
+    if(realTag.size() == resultTag.size()){
+                
+        for (int n = 0; n < resultTag.size(); n++)
+        {
+            if(resultTag[n] != realTag[n])
+            {
+                matrix[resultTag[n]][realTag[n]]++;
+            }
+        }
+    }
+    return matrix;
+}
+
+void ClassificationReport::displayMatrix(vector<vector <int> > matrix)
+    {
     
-    
-    return _matrix;
+    cout << "    0 1 2 3 4 5 6 7 8 9" << endl;
+    cout << "   -------------------" << endl;
+    int nb = 0;
+        
+    for(int i = 0; i<10; i++){
+        cout << i << " | ";
+        for (int j = 0; j < 10; j++)
+        {
+            nb++;
+            cout<< matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+    //cout << endl << endl << endl << endl;
 }

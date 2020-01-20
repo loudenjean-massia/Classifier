@@ -32,6 +32,7 @@ int main(int argc, char * argv[]) {
     vector<int> realTag;
     int testSize;
     ClassificationReport cr;
+    vector<vector<int> > matrix;
     
     resultTag = knnCosine.similarity(stoi(argv[3]), argv[1], argv[2]);
     
@@ -58,7 +59,14 @@ int main(int argc, char * argv[]) {
         cout << "Le vrai tag de " << i << " est : " << sampleVerif[i]->getTag() << endl;
     }
 
-    cout << "le pourcentage de bonnes réponses est :" << cr.computePercentage(realTag, resultTag) << endl;
+    cout << "le pourcentage de bonnes réponses est :" << cr.computePercentage(realTag, resultTag) << " %" << endl;
+    
+    cout << "Here is the confusion matrix : " << endl << endl << endl;
+    
+    
+    matrix = cr.confusionMatrix(realTag, resultTag);
+    cr.displayMatrix(matrix);
+    
     
     return 0;
 }

@@ -22,10 +22,11 @@ public:
     ClassificationReport();
     void tagValidation(vector<int> realTag, vector<int> resultTag);
     float computePercentage(vector<int> realTag, vector<int> resultTag);
-    vector<int> confusionMatrix(vector<int> realTag, vector<int> resultTag);
+    vector< vector <int> > confusionMatrix(vector<int> realTag, vector<int> resultTag);
+    void displayMatrix(vector< vector <int> > matrix );
     
 private:
-    int _confusion;
+    vector<vector <int> > _confusion;
     int _nbTags;
     int _nok;
     int _ok;
