@@ -6,15 +6,25 @@
 //
 
 #include "KnnCosine.h"
+#include <math.h>
 
+/**
+ @brief KnnCosine constructor
+*/
 KnnCosine::KnnCosine(): _cosine(0)
 {
-    
 }
 
+/**
+ @brief This method allows to get the Cosine between to vector of features
+ @param featureA First vector of feature
+ @param featureB Seconde vector of feature
+ @return norme
+*/
 void KnnCosine::cosine(FeatureVector featureA, FeatureVector featureB)
 {
-    float scalarProduct = 0;
+    //float scalarProduct = 0;
+    float norme = 0;
     std::vector<float> vectorA(70);
     vectorA = featureA.getVector();
     
@@ -28,6 +38,11 @@ void KnnCosine::cosine(FeatureVector featureA, FeatureVector featureB)
     _cosine = scalarProduct / (featureA.norme() * featureB.norme());
 }
 
+/**
+ @brief This method allows to compare compare the cosine of two vectors
+ @param featureA First vector of feature
+ @param featureB Seconde vector of feature
+*/
 vector<int> KnnCosine::similarity(int k, string apprFile, string testFile)
 {
     int apprSize, testSize;
@@ -90,23 +105,26 @@ vector<int> KnnCosine::similarity(int k, string apprFile, string testFile)
     return resultTag;
 }
 
-vector<float> KnnCosine::getMaxs(vector<float> max, vector<long double> cosine)
+vector<int> KnnCosine::getMaxs(vector<float> /*max*/ min, vector<long double> /*cosine*/ norme)
 {
-    vector<int> indexCosine(max.size(), 0);
-
-    for (int i = 0; i < max.size(); i++)
-    {
-        for (int j = 0; j < cosine.size(); j++)
-        {
-            if (cosine[j] > max[i])
-            {
-                max[i] = cosine[j];
-                indexCosine[i] = j;
-                cosine.erase(cosine.begin()+j);
+    //vector<int> indexCosine(max.size(), 0);
+    vector<int> indexNorme(min.size(), 0);
+    
+    //getnormeMin
+    
+    for(int i =0 ; i<min.size(); i++){
+        for(int j=0; j < norme.size(); j++){
+            if(norme[j] < min[i]){
+                min[i] = norme[j];
+                indexNorme[i]=j;
+                norme.erase(norme.begin()+j);
             }
+            
         }
+        
     }
-    return max;
+    //return indexCosine;
+    return indexNorme;
 }
 
 int KnnCosine::getTag(vector<int> tag)

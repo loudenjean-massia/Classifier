@@ -24,7 +24,7 @@ public:
     
     Data();
     
-    void add();
+    //void add();
     void load(string filename); //recovers test file datas
     int getNbSamples();
         

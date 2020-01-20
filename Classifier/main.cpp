@@ -55,8 +55,7 @@ int main(int argc, char * argv[]) {
 
     cout << "Le pourcentage de bonnes réponses est : " << cr.computePercentage(realTag, resultTag) << " %" << endl;
     
-    cout << endl << "Voici la matrice de confusion : " << endl << endl << endl;
-    
+    cout << endl << "Voici la matrice de confusion : " << endl << endl << endl;    
     
     matrix = cr.confusionMatrix(realTag, resultTag);
     cr.displayMatrix(matrix);

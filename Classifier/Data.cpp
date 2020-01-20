@@ -7,29 +7,35 @@
 
 #include "Data.h"
 
+
+/**
+ @brief Data constructor
+*/
 Data::Data()
 {
     _nbSamples = 0;
     _nbFeatures = 0;
 }
 
+/**
+ @brief This method allows to load the file
+ @param filename String reprenseting the name of the file to manage
+*/
 void Data::load(string filename) //Open the file
 {
     
-    ifstream digitFile(filename);  //Ouverture d'un fichier en lecture
-    //"/Users/leagand/Desktop/Homework/digitAppr.svm"
+    ifstream digitFile(filename);
     
     if (digitFile)
     {
-        string line; //Une variable pour stocker les lignes lues
+        string line;
         int i = 0;
 
-        while (getline(digitFile, line)) //Tant qu'on n'est pas ‡ la fin, on lit
+        while (getline(digitFile, line))
         {
             if(i==0)
             {
                 _nbSamples = stoi(line);
-               // cout << "Sample number : " << _nbSamples << endl;
             }
             else if(i==1)
             {
@@ -42,11 +48,10 @@ void Data::load(string filename) //Open the file
             i++;
         }
         
-        //Display the data
-        for(int j = 0; j < _nbSamples; j++){
-             //cout << "Line " << j+1 << " : \n" << _data[j] << endl;
-        }
-        
+//        for(int j = 0; j < _nbSamples; j++){
+//             //cout << "Line " << j+1 << " : \n" << _data[j] << endl;
+//        }
+//        
     }
     else
     {
@@ -55,19 +60,22 @@ void Data::load(string filename) //Open the file
 }
 
 
-
+/**
+ @brief This method allows to get the number of samples
+ @return _nbSamples
+*/
 int Data::getNbSamples()
 {
     return _nbSamples;
 }
 
 
-void Data::add() //Add a sample
-{
-    
-}
+//void Data::add() 
+//{
+//    
+//}
 
-string toString()
-{
-    return 0;
-}
+//string toString()
+//{
+//    return 0;
+//}
