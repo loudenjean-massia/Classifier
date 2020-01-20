@@ -12,10 +12,11 @@ using std::cout;
 using std::stringstream;
 using std::endl;
 
+
 /**
  @brief FeatureVector constructor
 */
-FeatureVector::FeatureVector(): _norme(0), _vector(), _scalar(0)
+FeatureVector::FeatureVector(): _norme(0), _vector()
 {
     
 }
@@ -113,7 +114,6 @@ void FeatureVector::scale()
             min = _vector[i];
         }
     }
-   
 }
 
 float FeatureVector::norme()
@@ -126,4 +126,3 @@ float FeatureVector::norme()
     norme = sqrt(norme);
     return norme;
 }
-

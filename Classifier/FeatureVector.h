@@ -40,7 +40,6 @@ public:
 
 private:
     float _norme;
-    long double _scalar;
     std::vector<float> _vector;
 };
 

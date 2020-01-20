@@ -6,11 +6,6 @@
 //
 
 #include "ClassificationReport.h"
-#include <fstream>
-#include <iostream>
-#include <string>
-
-using std::vector;
 
 
 /**
@@ -54,8 +49,6 @@ float ClassificationReport::computePercentage(vector<int> realTag, vector<int> r
         float percentage = 0;
         
         tagValidation(realTag, resultTag);
-        
-        cout << "_ok = " << _ok << ", _nok = " << _nok << endl;
         percentage = ((float)_ok / realTag.size()) * 100;
             
         return percentage;
@@ -69,8 +62,8 @@ float ClassificationReport::computePercentage(vector<int> realTag, vector<int> r
  @param resultTag Vector of int representing the tag estimated by the program
  @return matrix
  */
-vector<vector <int> > ClassificationReport::confusionMatrix(vector<int> realTag, vector<int> resultTag){
-    
+vector<vector <int> > ClassificationReport::confusionMatrix(vector<int> realTag, vector<int> resultTag)
+{
     vector<vector <int> > matrix(10 , vector<int> (10, 0));
     
     if(realTag.size() == resultTag.size()){
@@ -91,13 +84,13 @@ vector<vector <int> > ClassificationReport::confusionMatrix(vector<int> realTag,
  @param matrix A vector of vector confusion matrix
  */
 void ClassificationReport::displayMatrix(vector<vector <int> > matrix)
-    {
-    
+{
     cout << "    0 1 2 3 4 5 6 7 8 9" << endl;
     cout << "   --------------------" << endl;
     int nb = 0;
         
-    for(int i = 0; i<10; i++){
+    for(int i = 0; i<10; i++)
+    {
         cout << i << " | ";
         for (int j = 0; j < 10; j++)
         {
@@ -106,5 +99,4 @@ void ClassificationReport::displayMatrix(vector<vector <int> > matrix)
         }
         cout << endl;
     }
-    
 }

@@ -9,15 +9,19 @@
 #define Knn_h
 
 #include <stdio.h>
+#include <vector>
+#include <string>
+#include "Sample.h"
+#include "Data.h"
+#include "FeatureVector.h"
+
+using namespace std;
 
 class Knn {
+
 public:
-    Knn();
-        
-protected:
-    virtual float getKnn() = 0;
-    virtual void similarity() = 0;
-    virtual long double knnCosine() = 0;
+    virtual vector<int> similarity(int k, string apprFile, string testFile) = 0;
+    virtual int getTag(vector<int> tag) = 0;
 };
 
 #endif /* Knn_h */

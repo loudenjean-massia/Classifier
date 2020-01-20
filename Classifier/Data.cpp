@@ -6,13 +6,6 @@
 //
 
 #include "Data.h"
-#include <fstream>
-#include <iostream>
-#include <string>
-
-#include <unistd.h>
-
-using namespace std;
 
 
 /**
@@ -23,11 +16,6 @@ Data::Data()
     _nbSamples = 0;
     _nbFeatures = 0;
 }
-
-//Data::~Data()
-//{
-//
-//}
 
 /**
  @brief This method allows to load the file

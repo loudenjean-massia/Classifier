@@ -20,15 +20,10 @@ using std::cout;
 using std::stringstream;
 using std::endl;
 
-//Sample::Sample()
-//{
-//
-//}
-//
-//Sample::~Sample()
-//{
-//
-//}
+Sample::Sample()
+{
+
+}
 
 /**
  @brief This method allows to split the lines of the data file (each sample)
@@ -36,7 +31,7 @@ using std::endl;
  @param delimiter A char to delimit each sample of the data file
  @param elements A vector of element to store a sample
 */
-void Sample::splitLine(const string &chaine, char delimiter, vector<string> &elements){
+void Sample::splitLine(const string &chaine, char delimiteur, vector<string> &elements){
     
     stringstream ss(chaine);
     string sousChaine;
@@ -44,7 +39,6 @@ void Sample::splitLine(const string &chaine, char delimiter, vector<string> &ele
     while(getline(ss,sousChaine, delimiter)){
         elements.push_back(sousChaine);
     }
-    
 }
 
 /**
@@ -75,7 +69,6 @@ void Sample::tag(Data& data, int lineNb)
             {
                 _tag = stoi(features[i]);
             }
-
         }
    }
    else
