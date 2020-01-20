@@ -26,8 +26,8 @@ using std::endl;
 class Sample
 {
 public:
-    Sample();
-    ~Sample();
+//    Sample();
+//    ~Sample();
     
     void tag(Data& data, int lineNb);
     

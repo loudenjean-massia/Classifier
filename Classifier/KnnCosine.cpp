@@ -6,18 +6,27 @@
 //
 
 #include "KnnCosine.h"
+#include <math.h>
 
 using namespace std;
 
-
+/**
+ @brief KnnCosine constructor
+*/
 KnnCosine::KnnCosine(): _cosine(0)
 {
-    
 }
 
+/**
+ @brief This method allows to get the Cosine between to vector of features
+ @param featureA First vector of feature
+ @param featureB Seconde vector of feature
+ @return norme
+*/
 long double KnnCosine::getCosine(FeatureVector featureA, FeatureVector featureB)
 {
-    float scalarProduct = 0;
+    //float scalarProduct = 0;
+    float norme = 0;
     std::vector<float> vectorA(70);
     vectorA = featureA.getVector();
     
@@ -26,13 +35,19 @@ long double KnnCosine::getCosine(FeatureVector featureA, FeatureVector featureB)
 
     for (int i = 0; i < vectorB.size(); i++)
     {
-        scalarProduct += vectorA[i] * vectorB[i];
-        //norme += (vectorB[i] - vectorA[i])*(vectorB[i] - vectorA[i]);
+        //scalarProduct += vectorA[i] * vectorB[i];
+        norme += pow((vectorB[i] - vectorA[i]),2);
     }
-    return _cosine = scalarProduct / (featureA.norme() * featureB.norme()); //scalarProduct(featureA, featureB)
-   // return _cosine = sqrt(scalarProduct);
+    //return _cosine = scalarProduct / (featureA.norme() * featureB.norme()); //scalarProduct(featureA, featureB)
+    //cout << norme << endl;
+   return norme = sqrt(norme);
 }
 
+/**
+ @brief This method allows to compare compare the cosine of two vectors
+ @param featureA First vector of feature
+ @param featureB Seconde vector of feature
+*/
 vector<int> KnnCosine::similarity(int k, string apprFile, string testFile)
 {
     int apprSize, testSize;
@@ -90,11 +105,26 @@ vector<int> KnnCosine::similarity(int k, string apprFile, string testFile)
     return resultTag;
 }
 
-vector<int> KnnCosine::getMaxs(vector<float> max, vector<long double> cosine)
+vector<int> KnnCosine::getMaxs(vector<float> /*max*/ min, vector<long double> /*cosine*/ norme)
 {
-    vector<int> indexCosine(max.size(), 0);
+    //vector<int> indexCosine(max.size(), 0);
+    vector<int> indexNorme(min.size(), 0);
     
-    for (int i = 0; i < max.size(); i++)
+    //getnormeMin
+    
+    for(int i =0 ; i<min.size(); i++){
+        for(int j=0; j < norme.size(); j++){
+            if(norme[j] < min[i]){
+                min[i] = norme[j];
+                indexNorme[i]=j;
+                norme.erase(norme.begin()+j);
+            }
+            
+        }
+        
+    }
+    
+  /*  for (int i = 0; i < max.size(); i++)
     {
         for (int j = 0; j < cosine.size(); j++)
         {
@@ -105,8 +135,9 @@ vector<int> KnnCosine::getMaxs(vector<float> max, vector<long double> cosine)
                 cosine.erase(cosine.begin()+j);
             }
         }
-    }
-    return indexCosine;
+    } */
+    //return indexCosine;
+    return indexNorme;
 }
     
 float KnnCosine::getKnn()

@@ -25,7 +25,7 @@ class FeatureVector
 {
 public:
     FeatureVector();
-    ~FeatureVector();
+    //~FeatureVector();
 
     void vector(Data& data, int lineNb);
     void splitLine(const string &chaine, char delimiteur, std::vector<string> &elements);

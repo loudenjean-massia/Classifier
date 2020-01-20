@@ -59,9 +59,9 @@ int main(int argc, char * argv[]) {
         cout << "Le vrai tag de " << i << " est : " << sampleVerif[i]->getTag() << endl;
     }
 
-    cout << "le pourcentage de bonnes réponses est :" << cr.computePercentage(realTag, resultTag) << " %" << endl;
+    cout << "le pourcentage de bonnes réponses est :" << cr.computePercentage(realTag, resultTag) << " %" << endl << endl;
     
-    cout << "Here is the confusion matrix : " << endl << endl << endl;
+    cout << "Here is the confusion matrix : " << endl << endl;
     
     
     matrix = cr.confusionMatrix(realTag, resultTag);

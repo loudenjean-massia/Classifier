@@ -12,26 +12,40 @@ using std::cout;
 using std::stringstream;
 using std::endl;
 
+/**
+ @brief FeatureVector constructor
+*/
 FeatureVector::FeatureVector(): _norme(0), _vector(), _scalar(0)
 {
     
 }
 
-FeatureVector::~FeatureVector()
-{
-    
-}
+//FeatureVector::~FeatureVector()
+//{
+//
+//}
 
-void FeatureVector::splitLine(const string &chaine, char delimiteur, std::vector<string> &elements){
+/**
+ @brief This method allows to split the lines of the data file (each sample)
+ @param chaine   ??????
+ @param delimiter  A char to delimit each sample of the data file
+ @param elements A vector of element to store a sample
+*/
+void FeatureVector::splitLine(const string &chaine, char delimiter, std::vector<string> &elements){
     
     stringstream ss(chaine);
     string sousChaine;
     
-    while(getline(ss,sousChaine, delimiteur)){
+    while(getline(ss,sousChaine, delimiter)){
         elements.push_back(sousChaine);
     }
 }
 
+/**
+ @brief This method allows to get only the vector of features
+ @param data The data file of Data type
+ @param lineNb Int representing the number of line
+*/
 void FeatureVector::vector(Data& data, int lineNb)
 {
    if (lineNb < data.getNbSamples())
@@ -41,7 +55,7 @@ void FeatureVector::vector(Data& data, int lineNb)
         for(int i = 1; i < features.size(); i++)
         {
             _vector.push_back(stof(features[i].c_str()));
-            //cout << "This the feature " << i << " of the sample " << lineNb << ": " << _vector[i-1] << endl;
+            
         }
    }
    else
@@ -51,21 +65,39 @@ void FeatureVector::vector(Data& data, int lineNb)
     
 }
 
+/**
+ @brief This method allows to get the vector norme
+ @return _norme
+*/
 float FeatureVector::getNorme()
 {
     return _norme;
 }
 
+/**
+ @brief This method allows to get the size of a vector of feature
+ @return 70
+*/
 int FeatureVector::getSize()
 {
     return 70;
 }
 
+/**
+ @brief This method allows to get the vector
+ @return _vector
+*/
 vector<float> FeatureVector::getVector() const 
 {
     return _vector;
 }
 
+
+/**
+ @brief This method allows to get only the vector of features
+ @param data The data file of Data type
+ @param lineNb Int representing the number of line
+*/
 void FeatureVector::scale()
 {
     float max = _vector[0];
@@ -82,14 +114,6 @@ void FeatureVector::scale()
         }
     }
    
-    /*for (int i = 0; i < 70; i++)
-    {
-        if (_vector[i] > 1)
-        {
-            _vector[i] = ;
-        }
-    }*/
-    //cout << "The max is " << max << " and the min is " << min << endl;
 }
 
 float FeatureVector::norme()
@@ -101,20 +125,5 @@ float FeatureVector::norme()
     }
     norme = sqrt(norme);
     return norme;
-    //cout << "La norme est : " << _norme << endl;
 }
 
-/*long double FeatureVector::scalarProduct(FeatureVector featureA)
-{
-    long double scalar = 0;
-    std::vector<float> vectorA(70);
-    vectorA = featureA.getVector();
-    
-    for (int i = 0; i < _vector.size(); i++)
-    {
-        cout << vectorA[i] << endl;
-        //scalar += _vector[i] * vectorA[i];
-    }
-    return scalar;
-    //cout << "Le produit scalaire est : " << _scalar << endl;
-}*/
