@@ -13,13 +13,16 @@
 #include <math.h>
 
 using namespace std;
+using std::vector;
 
 class ClassificationReport{
     
 public:
     
     ClassificationReport();
+    void tagValidation(vector<int> realTag, vector<int> resultTag);
     float computePercentage(vector<int> realTag, vector<int> resultTag);
+    vector<int> confusionMatrix(vector<int> realTag, vector<int> resultTag);
     
 private:
     int _confusion;

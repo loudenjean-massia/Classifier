@@ -15,27 +15,42 @@ ClassificationReport::ClassificationReport(): _confusion(0), _nbTags(0), _nok(0)
 
 }
 
+void ClassificationReport::tagValidation(vector<int> realTag, vector<int> resultTag){
+    
+       for (int i = 0; i < realTag.size(); i++)
+       {
+           if(resultTag[i] == realTag[i])
+           {
+               _ok++;
+           }
+           else
+           {
+               _nok++;
+           }
+       }
+}
+
 float ClassificationReport::computePercentage(vector<int> realTag, vector<int> resultTag)
 {
-    float percentage = 0;
     if (realTag.size() == resultTag.size())
     {
-        for (int i = 0; i < realTag.size(); i++)
-        {
-            if(resultTag[i] == realTag[i])
-            {
-                _ok++;
-            }
-            else
-            {
-                _nok++;
-            }
-        }
+        float percentage = 0;
+        
+        tagValidation(realTag, resultTag);
+        
         cout << "_ok = " << _ok << ", _nok = " << _nok << endl;
         percentage = ((float)_ok / realTag.size()) * 100;
-        
+            
         return percentage;
     }
     return -1;
 }
 
+vector<int> ClassificationReport::confusionMatrix(vector<int> realTag, vector<int> resultTag){
+    
+    vector<int> _matrix;
+    
+    
+    
+    return _matrix;
+}
