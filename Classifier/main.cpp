@@ -22,7 +22,7 @@ int main(int argc, char * argv[]) {
     //Argv[2] : fichier de test
     //Argv[3] : k nmbre de voisin que l'on fait voter pour la prédiction d'étiquettes
 
-    KnnNorme knnNorme;
+    KnnCosine knnNorme;
     Data test;
     vector<int> resultTag;
     vector<int> realTag;

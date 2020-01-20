@@ -5,35 +5,35 @@
 //  Created by Lou Denjean-Massia on 12/01/2020.
 //
 
-#include "KnnCosine.h"
+#include "KnnNorme.h"
 
-KnnCosine::KnnCosine(): _cosine(0)
+KnnNorme::KnnNorme(): _norme(0)
 {
     
 }
 
-void KnnCosine::cosine(FeatureVector featureA, FeatureVector featureB)
+void KnnNorme::norme(FeatureVector featureA, FeatureVector featureB)
 {
-    float scalarProduct = 0;
-    std::vector<float> vectorA(70);
+    float norme = 0;
+    vector<float> vectorA(70);
     vectorA = featureA.getVector();
     
-    std::vector<float> vectorB(70);
+    vector<float> vectorB(70);
     vectorB = featureB.getVector();
 
     for (int i = 0; i < vectorA.size(); i++)
     {
-        scalarProduct += vectorA[i] * vectorB[i];
+        norme += (vectorA[i] - vectorB[i]) * (vectorA[i] - vectorB[i]);
     }
-    _cosine = scalarProduct / (featureA.norme() * featureB.norme());
+    _norme = sqrt(norme);
 }
 
-vector<int> KnnCosine::similarity(int k, string apprFile, string testFile)
+vector<int> KnnNorme::similarity(int k, string apprFile, string testFile)
 {
     int apprSize, testSize;
-    vector<long double> cosineTab;
+    vector<long double> normeTab;
     
-    vector<float> max(k, 0);
+    vector<float> min(k, 100);
     vector<int> tag;
     vector<int> resultTag;
     
@@ -66,17 +66,17 @@ vector<int> KnnCosine::similarity(int k, string apprFile, string testFile)
     {
        for(int i = 0; i < apprSize; i++)
        {
-           cosine(sampleTest[j]->getFeatures(), sampleAppr[i]->getFeatures());
-           cosineTab.push_back(_cosine);
+           norme(sampleTest[j]->getFeatures(), sampleAppr[i]->getFeatures());
+           normeTab.push_back(_norme);
        }
 
-        max = getMaxs(max, cosineTab);
+        min = getMins(min, normeTab);
         
         for (int n = 0; n < k; n++)
         {
             for (int i = 0; i < apprSize; i++)
             {
-                if (max[n] == cosineTab[i])
+                if (min[n] == normeTab[i])
                 {
                     tag.push_back(sampleAppr[i]->getTag());
                 }
@@ -84,38 +84,37 @@ vector<int> KnnCosine::similarity(int k, string apprFile, string testFile)
         }
 
         resultTag.push_back(getTag(tag));
-        cosineTab.clear();
+        normeTab.clear();
         tag.clear();
     }
     return resultTag;
 }
 
-vector<float> KnnCosine::getMaxs(vector<float> max, vector<long double> cosine)
+vector<float> KnnNorme::getMins(vector<float> min, vector<long double> norme)
 {
-    vector<int> indexCosine(max.size(), 0);
+    vector<int> indexNorme(min.size(), 0);
 
-    for (int i = 0; i < max.size(); i++)
+    for (int i = 0; i < min.size(); i++)
     {
-        for (int j = 0; j < cosine.size(); j++)
+        for (int j = 0; j < norme.size(); j++)
         {
-            if (cosine[j] > max[i])
+            if (norme[j] <= min[i])
             {
-                max[i] = cosine[j];
-                indexCosine[i] = j;
-                cosine.erase(cosine.begin()+j);
+                min[i] = norme[j];
+                indexNorme[i] = j;
+                norme.erase(norme.begin()+j);
             }
         }
     }
-    return max;
+    return min;
 }
 
-int KnnCosine::getTag(vector<int> tag)
+int KnnNorme::getTag(vector<int> tag)
 {
     vector<int> nbRepet(10,0);
     int maxRepet = 0;
     int tagMax = 0;
     
-    //cout << "size de tag " << tag.size() << endl;
     for (int j = 0; j < tag.size(); j++)
     {
         for (int i = 0; i < 10; i++)

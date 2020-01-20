@@ -28,7 +28,7 @@ FeatureVector::FeatureVector(): _norme(0), _vector()
 
 /**
  @brief This method allows to split the lines of the data file (each sample)
- @param chaine   ??????
+ @param chaine The string which has to be split
  @param delimiter  A char to delimit each sample of the data file
  @param elements A vector of element to store a sample
 */
@@ -91,29 +91,6 @@ int FeatureVector::getSize()
 vector<float> FeatureVector::getVector() const 
 {
     return _vector;
-}
-
-
-/**
- @brief This method allows to get only the vector of features
- @param data The data file of Data type
- @param lineNb Int representing the number of line
-*/
-void FeatureVector::scale()
-{
-    float max = _vector[0];
-    float min = _vector[0];
-    for (int i = 0; i < 70; i++)
-    {
-        if (_vector[i] > max)
-        {
-            max = _vector[i];
-        }
-        if (_vector[i] < min)
-        {
-            min = _vector[i];
-        }
-    }
 }
 
 float FeatureVector::norme()

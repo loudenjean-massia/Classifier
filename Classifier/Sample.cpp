@@ -27,7 +27,7 @@ Sample::Sample()
 
 /**
  @brief This method allows to split the lines of the data file (each sample)
- @param chaine   ??????
+ @param chaine The string which has to be split
  @param delimiter A char to delimit each sample of the data file
  @param elements A vector of element to store a sample
 */
@@ -36,7 +36,7 @@ void Sample::splitLine(const string &chaine, char delimiteur, vector<string> &el
     stringstream ss(chaine);
     string sousChaine;
     
-    while(getline(ss,sousChaine, delimiter)){
+    while(getline(ss,sousChaine, delimiteur)){
         elements.push_back(sousChaine);
     }
 }
