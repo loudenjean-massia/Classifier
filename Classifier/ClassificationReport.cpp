@@ -70,7 +70,7 @@ vector<vector <int> > ClassificationReport::confusionMatrix(vector<int> realTag,
                 
         for (int n = 0; n < resultTag.size(); n++)
         {
-            if(resultTag[n] != realTag[n])
+            if(resultTag[n] == realTag[n])
             {
                 matrix[resultTag[n]][realTag[n]]++;
             }

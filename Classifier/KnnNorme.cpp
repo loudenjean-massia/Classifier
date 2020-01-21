@@ -36,7 +36,8 @@ vector<int> KnnNorme::similarity(int k, string apprFile, string testFile)
     vector<float> min(k, 100);
     vector<int> tag;
     vector<int> resultTag;
-    
+    vector<int> indexMin;
+
     /* Chargement des fichiers*/
     _appr.load(apprFile);
     _test.load(testFile);
@@ -70,9 +71,10 @@ vector<int> KnnNorme::similarity(int k, string apprFile, string testFile)
            normeTab.push_back(_norme);
        }
 
-        min = getMins(min, normeTab);
-        
-        for (int n = 0; n < k; n++)
+        //min = getMins(min, normeTab);
+        indexMin = getMins(min, normeTab);
+
+        /*for (int n = 0; n < k; n++)
         {
             for (int i = 0; i < apprSize; i++)
             {
@@ -81,8 +83,12 @@ vector<int> KnnNorme::similarity(int k, string apprFile, string testFile)
                     tag.push_back(sampleAppr[i]->getTag());
                 }
             }
-        }
+        }*/
 
+	for (int i = 0; i < apprSize; i++)
+        {
+		tag.push_back(sampleAppr[indexMin[i]]->getTag());
+	}
         resultTag.push_back(getTag(tag));
         normeTab.clear();
         tag.clear();
@@ -90,15 +96,15 @@ vector<int> KnnNorme::similarity(int k, string apprFile, string testFile)
     return resultTag;
 }
 
-vector<float> KnnNorme::getMins(vector<float> min, vector<long double> norme)
+vector<int> KnnNorme::getMins(vector<float> min, vector<long double> norme)
 {
     vector<int> indexNorme(min.size(), 0);
-
     for (int i = 0; i < min.size(); i++)
     {
-        for (int j = 0; j < norme.size(); j++)
+        
+	for (int j = 0; j < norme.size(); j++)
         {
-            if (norme[j] <= min[i])
+            if (norme[j] < min[i])
             {
                 min[i] = norme[j];
                 indexNorme[i] = j;
@@ -106,7 +112,14 @@ vector<float> KnnNorme::getMins(vector<float> min, vector<long double> norme)
             }
         }
     }
-    return min;
+
+    for (int i = 0; i < min.size(); i++)
+    {
+	cout << "min de " << i << " : " << min[i] << endl;
+	cout << "index min de " << i << " : " << indexNorme[i] << endl;
+    }
+
+    return indexNorme;
 }
 
 int KnnNorme::getTag(vector<int> tag)

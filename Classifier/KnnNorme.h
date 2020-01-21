@@ -19,7 +19,7 @@ public:
     int getTag(vector<int> tag);
     
     void norme(FeatureVector featureA, FeatureVector featureB);
-    vector<float> getMins(vector<float> min, vector<long double> norme);
+    vector<int> getMins(vector<float> min, vector<long double> norme);
     
 private:
     long double _norme;
